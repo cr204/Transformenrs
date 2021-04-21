@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navController = UINavigationController()
         appCoordinator = MainCoordinator(navigationController: navController)
-        appCoordinator.start()
+        //appCoordinator.start()
         
         appWindow.rootViewController = navController
         appWindow.makeKeyAndVisible()

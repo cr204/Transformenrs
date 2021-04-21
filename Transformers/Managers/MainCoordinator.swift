@@ -13,6 +13,14 @@ class MainCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        
+//        self.singOut()
+        
+        if AuthManager.shared.isSignedIn {
+            self.transformerList()
+        } else {
+            start()
+        }
     }
     
     func start() {
@@ -33,6 +41,12 @@ class MainCoordinator: Coordinator {
        navigationController.pushViewController(vc, animated: true)
     }
     
+    
+    func singOut() {
+        AuthManager.shared.signOut { bool in
+            print("Signed Out: \(bool)")
+        }
+    }
     
 }
 

@@ -9,15 +9,30 @@ import UIKit
 
 class ViewController: UIViewController, Storyboarded {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     weak var coordinator: MainCoordinator?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+       // activityIndicator.stopAnimating()
+        activityIndicator.hidesWhenStopped = true
     }
 
     @IBAction func loginTapped(_ sender: Any) {
-        coordinator?.transformerList()
+        activityIndicator.startAnimating()
+        AuthManager.shared.getToken(urlLink: Links.getToken) { res in
+            print("RESULT: \(res)")
+            
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                if res {
+                    self.coordinator?.transformerList()
+                }
+            }
+            
+        }
     }
 }
 
