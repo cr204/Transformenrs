@@ -58,43 +58,17 @@ final class AuthManager {
     /// Supplies valid token to be used with API Calls
     public func withValidToken(completion: @escaping (String) -> Void) {
         guard let token = accessToken else {
-            // TODO: Trow to login view
-            // self.getNewToken(link: Links.getToken)
+            // TODO: Throw to login view
+            print("Error! Can not get local AccessToken")
             return
         }
         
-        print("Token: \(token)")
+        print("Valid Token: \(token)")
         
-        //completion(accessToken)
+        completion(token)
     }
     
-    // No need
-    private func getNewToken(link: String) {
-        // Get Token
-        guard let url = URL(string: link) else {
-            return
-        }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.setValue("application/x-www-form-urlencoded ", forHTTPHeaderField: "Content-Type")
-
-        let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
-            guard let data = data, error == nil else {
-//                completion(false)
-                print("Failed to get new token: \(String(describing: error))")
-                return
-            }
-
-            let newToken = String(data: data, encoding: .utf8)!
-            print("NEW TOKEN: \(newToken)")
-            self?.cacheToken(newToken)
-        }
-        task.resume()
-    }
-    
-    
-    private func cacheToken(_ token: String) {
+    public func cacheToken(_ token: String) {
         UserDefaults.standard.setValue(token, forKey: "accessToken")
         UserDefaults.standard.synchronize()
     }

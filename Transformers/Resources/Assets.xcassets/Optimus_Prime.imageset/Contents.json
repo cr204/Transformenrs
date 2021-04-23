@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Optimus_Prime.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -15,12 +15,15 @@ class MainCoordinator: Coordinator {
         self.navigationController = navigationController
         
 //        self.singOut()
+//        self.injectToken()
         
-        if AuthManager.shared.isSignedIn {
-            self.transformerList()
-        } else {
-            start()
-        }
+//        if AuthManager.shared.isSignedIn {
+//            self.transformerList()
+//        } else {
+//            start()
+//        }
+        
+        createNewRobot()
     }
     
     func start() {
@@ -45,6 +48,15 @@ class MainCoordinator: Coordinator {
     func singOut() {
         AuthManager.shared.signOut { bool in
             print("Signed Out: \(bool)")
+        }
+    }
+    
+    func injectToken() {
+        AuthManager.shared.signOut { bool in
+            if bool {
+                AuthManager.shared.cacheToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0cmFuc2Zvcm1lcnNJZCI6Ii1NWVNZUUdEQWxyZEw0dEpzdDIzIiwiaWF0IjoxNjE4NjI0NzU1fQ.JPYljmaQv1ztlXzW-poUEvWtjyQ6qi_cWEppoD7q_5I")
+                print("Test token injected!")
+            }
         }
     }
     
