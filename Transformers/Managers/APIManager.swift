@@ -44,6 +44,50 @@ final class APIManager {
         }
     }
     
+    public func addNew(transformer: Transformer, completion: @escaping ((Result<Transformer, Error>)) -> Void) {
+        
+        createRequest(with: URL(string: Links.createTransformer), type: .POST) { request in
+            
+            var request = request
+            let json: [String: Any] =  [
+                "name": transformer.name,
+                "strength": transformer.strength,
+                "intelligence": transformer.intelligence,
+                "speed": transformer.intelligence,
+                "endurance": transformer.endurance,
+                "rank": transformer.rank,
+                "courage": transformer.courage,
+                "firepower": transformer.firepower,
+                "skill": transformer.skill,
+                "team": transformer.team
+                ]
+
+            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let data = data, error == nil else {
+                    completion(.failure(APIError.faileedToGetData))
+                    return
+                }
+ 
+                let dataAsString = String(data: data, encoding: .utf8)!
+                print("________DATA___________")
+                print(dataAsString)
+
+                do {
+                    let result = try JSONDecoder().decode(Transformer.self, from: data)
+                    completion(.success(result))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+        
+    }
+    
     
     
     // MARK: - Private

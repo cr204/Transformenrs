@@ -38,8 +38,12 @@ class TransformerList: UIViewController, Storyboarded {
         tableView.dataSource = self
         tableView.register(TransformerListCell.self, forCellReuseIdentifier: "TransformerListCell")
         
-        self.fetchListData()
         self.setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.fetchListData()
     }
     
     
@@ -69,8 +73,8 @@ class TransformerList: UIViewController, Storyboarded {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             self.tableView.isHidden = false
-            print(self.robotList.count)
             self.tableView.reloadData()
+            print(self.robotList.count)
         }
     }
     

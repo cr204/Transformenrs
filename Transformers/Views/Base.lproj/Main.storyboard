@@ -197,15 +197,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ECc-ll-6TP">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="agE-l3-0LF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xjc-dy-2b4" firstAttribute="centerX" secondItem="agE-l3-0LF" secondAttribute="centerX" id="4re-qH-Myq"/>
                             <constraint firstItem="CwS-VN-qT5" firstAttribute="top" secondItem="agE-l3-0LF" secondAttribute="top" constant="34" id="5wh-cK-sx7"/>
+                            <constraint firstItem="ECc-ll-6TP" firstAttribute="centerY" secondItem="FIf-cD-Csg" secondAttribute="centerY" id="DRK-FH-IXr"/>
                             <constraint firstItem="ZCD-u9-BuE" firstAttribute="top" secondItem="CwS-VN-qT5" secondAttribute="bottom" constant="16" id="EX7-7w-nA8"/>
                             <constraint firstItem="wBu-hB-C8H" firstAttribute="top" secondItem="agE-l3-0LF" secondAttribute="top" constant="20" id="W0Q-7w-lSb"/>
                             <constraint firstItem="agE-l3-0LF" firstAttribute="trailing" secondItem="Ylr-dk-Alo" secondAttribute="trailing" constant="16" id="XN0-43-K85"/>
+                            <constraint firstItem="ECc-ll-6TP" firstAttribute="centerX" secondItem="FIf-cD-Csg" secondAttribute="centerX" id="caz-gC-ehp"/>
                             <constraint firstItem="agE-l3-0LF" firstAttribute="bottom" secondItem="Ylr-dk-Alo" secondAttribute="bottom" constant="20" id="cwa-Am-XkB"/>
                             <constraint firstItem="Ylr-dk-Alo" firstAttribute="leading" secondItem="agE-l3-0LF" secondAttribute="leading" constant="16" id="l8d-ZH-M77"/>
                             <constraint firstItem="Xjc-dy-2b4" firstAttribute="top" secondItem="wBu-hB-C8H" secondAttribute="bottom" constant="30" id="nT1-nE-TED"/>
@@ -216,6 +221,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="ECc-ll-6TP" id="L01-gP-KUt"/>
                         <outlet property="btnAuto" destination="CwS-VN-qT5" id="eKk-rC-sWC"/>
                         <outlet property="btnDesp" destination="ZCD-u9-BuE" id="cay-ah-YCe"/>
                         <outlet property="imgRobot" destination="wBu-hB-C8H" id="5Rz-XX-2dD"/>

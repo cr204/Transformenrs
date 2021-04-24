@@ -21,7 +21,11 @@ class CriteriaCell: UITableViewCell {
     var criteria: RobotCriteria? = nil {
         didSet {
             labelCriteria.text = criteria?.criteria.rawValue
-            criteriaLevel.selectedSegmentIndex = criteria?.level ?? 0
+            if let level = criteria?.level, level > 0 {
+                criteriaLevel.selectedSegmentIndex = level - 1
+            } else {
+                criteriaLevel.selectedSegmentIndex = 0
+            }
         }
     }
     
@@ -43,7 +47,8 @@ class CriteriaCell: UITableViewCell {
         guard let criteriaType = criteria?.criteria, let criteriaId = criteriaId else {
             return
         }
-        delegate?.criteriaValueChanged(criteria: RobotCriteria(criteria: criteriaType, level: criteriaLevel.selectedSegmentIndex), id: criteriaId)
+        let level = criteriaLevel.selectedSegmentIndex + 1
+        delegate?.criteriaValueChanged(criteria: RobotCriteria(criteria: criteriaType, level: level), id: criteriaId)
     }
 
 }
