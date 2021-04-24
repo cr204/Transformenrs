@@ -8,11 +8,11 @@
 import Foundation
 
 struct ListResponce: Codable {
-    let transformers: [Transformer]
+    let transformers: [TransformerResponce]
 }
 
 
-struct Transformer: Codable {
+struct TransformerResponce: Codable {
     let courage: Int
     let endurance: Int
     let firepower: Int

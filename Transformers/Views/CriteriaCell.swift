@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CriteriaCellDelegate: class {
-    func onSelected(level: Int)
+    func criteriaValueChanged(criteria: RobotCriteria, id: Int)
 }
 
 class CriteriaCell: UITableViewCell {
@@ -17,6 +17,13 @@ class CriteriaCell: UITableViewCell {
     @IBOutlet weak var criteriaLevel: UISegmentedControl!
 
     weak var delegate: CriteriaCellDelegate?
+    var criteriaId: Int?
+    var criteria: RobotCriteria? = nil {
+        didSet {
+            labelCriteria.text = criteria?.criteria.rawValue
+            criteriaLevel.selectedSegmentIndex = criteria?.level ?? 0
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,7 +40,10 @@ class CriteriaCell: UITableViewCell {
     }
     
     @objc func onLevelChanged(_ sender: Any) {
-        delegate?.onSelected(level: criteriaLevel.selectedSegmentIndex)
+        guard let criteriaType = criteria?.criteria, let criteriaId = criteriaId else {
+            return
+        }
+        delegate?.criteriaValueChanged(criteria: RobotCriteria(criteria: criteriaType, level: criteriaLevel.selectedSegmentIndex), id: criteriaId)
     }
 
 }

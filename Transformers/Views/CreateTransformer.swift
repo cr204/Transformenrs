@@ -11,8 +11,15 @@ class CreateTransformer: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
     
-    let criteriaNames = ["Strength", "Intelligence", "Speed", "Endurance", "Rank", "Courage", "Firepower", "Skill"]
-    var criteriaValues = [0, 0, 0, 0, 0, 0, 0, 0]
+    var criteriaTypes:[RobotCriteria] = [RobotCriteria(criteria: .strength, level: 0),
+                                          RobotCriteria(criteria: .interlligence, level: 0),
+                                          RobotCriteria(criteria: .speed, level: 0),
+                                          RobotCriteria(criteria: .endurance, level: 0),
+                                          RobotCriteria(criteria: .rank, level: 0),
+                                          RobotCriteria(criteria: .courage, level: 0),
+                                          RobotCriteria(criteria: .firepower, level: 0),
+                                          RobotCriteria(criteria: .skill, level: 0)
+                                            ]
     
     @IBOutlet weak var imgRobot: UIImageView!
     @IBOutlet weak var btnAuto: UIButton!
@@ -82,6 +89,13 @@ class CreateTransformer: UIViewController, Storyboarded {
 }
 
 
+extension CreateTransformer: CriteriaCellDelegate {
+    func criteriaValueChanged(criteria: RobotCriteria, id: Int) {
+        print("Criteria: \(criteria.criteria.rawValue), level: \(criteria.level)")
+        criteriaTypes[id] = criteria
+    }
+}
+
 extension CreateTransformer: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -97,8 +111,10 @@ extension CreateTransformer: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CriteriaCell") as! CriteriaCell
-        cell.labelCriteria.text = criteriaNames[indexPath.row]
-        cell.criteriaLevel.selectedSegmentIndex = criteriaValues[indexPath.row]
+        cell.delegate = self
+        cell.criteriaId = indexPath.row
+        cell.criteria = criteriaTypes[indexPath.row]
+        cell.criteriaLevel.selectedSegmentIndex = criteriaTypes[indexPath.row].level
         return cell
     }
     

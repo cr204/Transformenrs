@@ -16,7 +16,7 @@ class TransformerList: UIViewController, Storyboarded {
     @IBOutlet weak var bigAddButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var robotList: [Transformer] = [] {
+    var robotList: [TransformerResponce] = [] {
         didSet {
             print("List loaded:")
             self.updateData()
