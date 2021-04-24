@@ -19,7 +19,7 @@ final class APIManager {
     
     
     
-    public func getTransformerList(completion: @escaping ((Result<[TransformerResponce], Error>)) -> Void) {
+    public func getTransformerList(completion: @escaping ((Result<[Transformer], Error>)) -> Void) {
         
         createRequest(with: URL(string: Links.getTransformerList), type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in

@@ -17,13 +17,13 @@ class MainCoordinator: Coordinator {
 //        self.singOut()
 //        self.injectToken()
         
-//        if AuthManager.shared.isSignedIn {
-//            self.transformerList()
-//        } else {
-//            start()
-//        }
+        if AuthManager.shared.isSignedIn {
+            self.transformerList()
+        } else {
+            start()
+        }
         
-        createNewRobot()
+        //createNewRobot()
     }
     
     func start() {

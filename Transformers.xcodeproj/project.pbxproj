@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5A28E87E2634036B00753AF5 /* CriteriaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A28E87D2634036B00753AF5 /* CriteriaModel.swift */; };
+		5A28E8832634055700753AF5 /* ModelStructure_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A28E8822634055600753AF5 /* ModelStructure_Tests.swift */; };
 		5A7053F5262E0ECB00EF1B42 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7053F4262E0ECB00EF1B42 /* AuthManager.swift */; };
 		5A7053FF262E53CC00EF1B42 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7053FE262E53CC00EF1B42 /* APIManager.swift */; };
 		5A82C044263154DC00634B01 /* CriteriaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A82C043263154DC00634B01 /* CriteriaCell.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		5A28E87D2634036B00753AF5 /* CriteriaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaModel.swift; sourceTree = "<group>"; };
+		5A28E8822634055600753AF5 /* ModelStructure_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructure_Tests.swift; sourceTree = "<group>"; };
 		5A7053F4262E0ECB00EF1B42 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		5A7053FE262E53CC00EF1B42 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		5A82C043263154DC00634B01 /* CriteriaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaCell.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				5AF640F5262D7EDE00508C54 /* TransformersTests.swift */,
+				5A28E8822634055600753AF5 /* ModelStructure_Tests.swift */,
 				5AF640F7262D7EDE00508C54 /* Info.plist */,
 			);
 			path = TransformersTests;
@@ -357,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AF640F6262D7EDE00508C54 /* TransformersTests.swift in Sources */,
+				5A28E8832634055700753AF5 /* ModelStructure_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
