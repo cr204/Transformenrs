@@ -15,8 +15,8 @@ class TransformerList: UIViewController, Storyboarded {
     @IBOutlet weak var labelInfo: UILabel!
     @IBOutlet weak var bigAddButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    
-    var robotList: [Transformer] = [] {
+
+    private var robotList: [Transformer] = [] {
         didSet {
             print("List loaded:")
             self.updateData()
@@ -27,7 +27,9 @@ class TransformerList: UIViewController, Storyboarded {
         super.viewDidLoad()
         
         self.title = "Transformers"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
+        let addButton   = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItems = [editButton, addButton]
         
         tableView.isHidden = true
         labelInfo.isHidden = true
@@ -48,12 +50,10 @@ class TransformerList: UIViewController, Storyboarded {
     
     
     private func fetchListData() {
-        // New Releases
         APIManager.shared.getTransformerList { result in
-            
             switch result {
             case .success(let model):
-                self.robotList = model
+                self.robotList = model.sorted { $0.team < $1.team }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -69,7 +69,6 @@ class TransformerList: UIViewController, Storyboarded {
     }
     
     private func updateData() {
-        
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
             self.tableView.isHidden = false
@@ -87,9 +86,44 @@ class TransformerList: UIViewController, Storyboarded {
         coordinator?.createNewRobot()
     }
     
+    @objc private func editTapped(_ sender: UIBarButtonItem) {
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+    }
+    
+    private func removeTransformer(id: String) {
+        print("Remove: \(id)")
+        
+        APIManager.shared.removeTransformer(id: id) { result in
+            switch result {
+            case .success(let res):
+                print("Res: \(res)")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+    }
+    
 }
 
 extension TransformerList: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            var itemToDelete:Transformer!
+            itemToDelete = robotList[indexPath.row]
+            robotList.remove(at: indexPath.row)
+            
+            self.removeTransformer(id: itemToDelete.id)
+            
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.endUpdates()
+        }
+        view.setNeedsLayout()
+    }
     
 }
 
@@ -100,41 +134,8 @@ extension TransformerList: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransformerListCell") as! TransformerListCell
-        cell.name = robotList[indexPath.row].name
+        cell.data = robotList[indexPath.row]
         return cell
-    }
-    
-}
-
-fileprivate class TransformerListCell: UITableViewCell {
-    
-    var name: String = "TransformerName" {
-        didSet {
-            labelName.text = name
-        }
-    }
-    
-    private let labelName: UILabel = {
-        let label = UILabel()
-        label.textColor = Colors.textBlack
-        label.font = .systemFont(ofSize: 14, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.initViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func initViews() {
-        self.addSubview(labelName)
-        labelName.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        labelName.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 14).isActive = true
     }
     
 }

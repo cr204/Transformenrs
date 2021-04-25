@@ -28,9 +28,7 @@ final class APIManager {
                     return
                 }
                 
-//                let dataAsString = String(data: data, encoding: .utf8)!
-//                print("________DATA___________")
-//                print(dataAsString)
+                self.printData(data)
 
                 do {
                     let result = try JSONDecoder().decode(ListResponce.self, from: data)
@@ -42,6 +40,24 @@ final class APIManager {
             }
             task.resume()
         }
+    }
+    
+    
+    public func removeTransformer(id: String, completion: @escaping ((Result<Bool, Error>)) -> Void) {
+        
+        let linkString = Links.getTransformerList + "/" + id
+        createRequest(with: URL(string: linkString), type: .DELETE) { request in
+            
+            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                guard let _ = data, error == nil else {
+                    completion(.failure(APIError.faileedToGetData))
+                    return
+                }
+                completion(.success(true))
+            }
+            task.resume()
+        }
+        
     }
     
     public func addNew(transformer: Transformer, completion: @escaping ((Result<Transformer, Error>)) -> Void) {
@@ -70,11 +86,9 @@ final class APIManager {
                     completion(.failure(APIError.faileedToGetData))
                     return
                 }
- 
-                let dataAsString = String(data: data, encoding: .utf8)!
-                print("________DATA___________")
-                print(dataAsString)
 
+                self.printData(data)
+                
                 do {
                     let result = try JSONDecoder().decode(Transformer.self, from: data)
                     completion(.success(result))
@@ -115,6 +129,12 @@ final class APIManager {
             request.timeoutInterval = 30
             completion(request)
         }
+    }
+    
+    private func printData(_ data: Data) {
+        let dataAsString = String(data: data, encoding: .utf8)!
+        print("________DATA___________")
+        print(dataAsString)
     }
     
 }

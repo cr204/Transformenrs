@@ -161,7 +161,7 @@ extension CreateTransformer: UITableViewDataSource {
         cell.delegate = self
         cell.criteriaId = indexPath.row
         cell.criteria = criteriaTypes[indexPath.row]
-        cell.criteriaLevel.selectedSegmentIndex = criteriaTypes[indexPath.row].level
+        cell.criteriaLevel.selectedSegmentIndex = criteriaTypes[indexPath.row].level - 1
         return cell
     }
     
