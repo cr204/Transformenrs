@@ -73,12 +73,11 @@ extension BattleViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BattleListCell") as! BattleListCell
-        //cell.data = robotList[indexPath.row]
         let autobot: Transformer? = autobots.count > indexPath.row ? autobots[indexPath.row] : nil
         let desepticon: Transformer? = decepticons.count > indexPath.row ? decepticons[indexPath.row] : nil
         cell.autobotData = autobot
         cell.decepticonData = desepticon
-        //cell.data = Battle(autobot: autobot, desepticon: desepticon)
+        cell.showWinner()
         return cell
     }
     
