@@ -21,6 +21,7 @@ class TransformerList: UIViewController, Storyboarded {
         btn.backgroundColor = .blue
         btn.setTitle("WAR", for: .normal)
         btn.layer.cornerRadius = 30
+        btn.isEnabled = false
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
     }()
@@ -65,7 +66,26 @@ class TransformerList: UIViewController, Storyboarded {
                 self.robotList = model.sorted { $0.team < $1.team }
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showAlert(title: "Network Error", message: "Problem loading data,\n please try again")
+                }
             }
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel) {
+            (result : UIAlertAction) -> Void in
+            self.activityIndicator.startAnimating()
+            self.fetchListData()
+        }
+        alertController.addAction(okAction)
+        
+        DispatchQueue.main.async {
+            self.navigationController?.present(alertController, animated: true, completion: nil)
         }
     }
     
@@ -76,6 +96,7 @@ class TransformerList: UIViewController, Storyboarded {
         activityIndicator.startAnimating()
         
         view.addSubview(btnWar)
+        btnWar.addTarget(self, action: #selector(onWarTapped), for: .touchUpInside)
         btnWar.widthAnchor.constraint(equalToConstant: 60).isActive = true
         btnWar.heightAnchor.constraint(equalToConstant: 60).isActive = true
         NSLayoutConstraint(item: btnWar, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.7, constant: 0).isActive = true
@@ -88,6 +109,7 @@ class TransformerList: UIViewController, Storyboarded {
             self.activityIndicator.stopAnimating()
             self.tableView.isHidden = false
             self.tableView.reloadData()
+            self.btnWar.isEnabled = true
             print(self.robotList.count)
         }
     }
@@ -103,6 +125,10 @@ class TransformerList: UIViewController, Storyboarded {
     
     @objc private func editTapped(_ sender: UIBarButtonItem) {
         self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+    }
+    
+    @objc private func onWarTapped(_ sender: Any) {
+        coordinator?.battleList(robotList)
     }
     
     private func removeTransformer(id: String) {

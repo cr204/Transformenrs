@@ -25,4 +25,8 @@ struct Transformer: Codable {
     let strength: Int
     let team: String
     let team_icon: String
+    
+    var totalRank: Int {
+        return (courage + endurance + firepower + intelligence + rank + skill + speed + strength) / 8
+    }
 }

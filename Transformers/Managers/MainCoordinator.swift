@@ -23,7 +23,21 @@ class MainCoordinator: Coordinator {
             start()
         }
         
-        //createNewRobot()
+//        let tempList: [Transformer] = [
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "12345", intelligence: 7, name: "Autobot 1", rank: 7, skill: 8, speed: 8, strength: 7, team: "A", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "12345", intelligence: 7, name: "Autobot 2", rank: 7, skill: 8, speed: 8, strength: 7, team: "A", team_icon: "img"),
+//            Transformer(courage: 7, endurance: 8, firepower: 9, id: "12345", intelligence: 7, name: "Autobot 3", rank: 7, skill: 8, speed: 8, strength: 9, team: "A", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "12345", intelligence: 7, name: "Autobot 4", rank: 7, skill: 8, speed: 8, strength: 7, team: "A", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "12345", intelligence: 7, name: "Autobot 5", rank: 7, skill: 8, speed: 8, strength: 7, team: "A", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "67890", intelligence: 7, name: "Decepticon 1", rank: 7, skill: 8, speed: 8, strength: 7, team: "D", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "67890", intelligence: 7, name: "Decepticon 2", rank: 7, skill: 8, speed: 8, strength: 7, team: "D", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "67890", intelligence: 7, name: "Decepticon 3", rank: 7, skill: 8, speed: 8, strength: 7, team: "D", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "67890", intelligence: 7, name: "Decepticon 4", rank: 7, skill: 8, speed: 8, strength: 7, team: "D", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "67890", intelligence: 7, name: "Decepticon 5", rank: 7, skill: 8, speed: 8, strength: 7, team: "D", team_icon: "img"),
+//            Transformer(courage: 5, endurance: 6, firepower: 6, id: "67890", intelligence: 7, name: "Decepticon 6", rank: 7, skill: 8, speed: 8, strength: 7, team: "D", team_icon: "img")
+//        ]
+//
+//        battleList(tempList)
     }
     
     func start() {
@@ -48,6 +62,13 @@ class MainCoordinator: Coordinator {
         let vc = TransformerInfo.instantiate()
         vc.coordinator = self
         vc.transformer = robot
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func battleList(_ list: [Transformer]) {
+        let vc = BattleViewController.instantiate()
+        vc.coordinator = self
+        vc.transformers = list
         navigationController.pushViewController(vc, animated: true)
     }
     

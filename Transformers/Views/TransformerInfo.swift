@@ -114,6 +114,7 @@ fileprivate class TransformerInfoListCell: UITableViewCell {
     
     private let status: StatusView = {
         let view = StatusView()
+        view.alpha = 0.8
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -139,10 +140,10 @@ fileprivate class TransformerInfoListCell: UITableViewCell {
         labelName.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 0).isActive = true
         
         self.contentView.addSubview(status)
-        status.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        status.widthAnchor.constraint(equalToConstant: 150).isActive = true
         status.heightAnchor.constraint(equalToConstant: 12).isActive = true
         status.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        status.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -15).isActive = true
+        status.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
     }
     
     
