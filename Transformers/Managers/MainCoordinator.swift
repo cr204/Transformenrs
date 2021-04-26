@@ -44,6 +44,13 @@ class MainCoordinator: Coordinator {
        navigationController.pushViewController(vc, animated: true)
     }
     
+    func robotDetails(robot: Transformer) {
+        let vc = TransformerInfo.instantiate()
+        vc.coordinator = self
+        vc.transformer = robot
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
     
     func singOut() {
         AuthManager.shared.signOut { bool in

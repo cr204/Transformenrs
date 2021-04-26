@@ -15,6 +15,15 @@ class TransformerList: UIViewController, Storyboarded {
     @IBOutlet weak var labelInfo: UILabel!
     @IBOutlet weak var bigAddButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
+    let btnWar: UIButton = {
+        let btn = UIButton()
+        btn.backgroundColor = .blue
+        btn.setTitle("WAR", for: .normal)
+        btn.layer.cornerRadius = 30
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
 
     private var robotList: [Transformer] = [] {
         didSet {
@@ -65,6 +74,12 @@ class TransformerList: UIViewController, Storyboarded {
         bigAddButton.layer.cornerRadius = 8
         
         activityIndicator.startAnimating()
+        
+        view.addSubview(btnWar)
+        btnWar.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        btnWar.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        NSLayoutConstraint(item: btnWar, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1.7, constant: 0).isActive = true
+        NSLayoutConstraint(item: btnWar, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.83, constant: 0).isActive = true
         
     }
     
@@ -123,6 +138,11 @@ extension TransformerList: UITableViewDelegate {
             tableView.endUpdates()
         }
         view.setNeedsLayout()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //print(robotList[indexPath.row].name)
+        coordinator?.robotDetails(robot: robotList[indexPath.row])
     }
     
 }

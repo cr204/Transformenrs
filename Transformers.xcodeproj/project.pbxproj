@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A27B9F92635939700E24065 /* TransformerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A27B9F82635939700E24065 /* TransformerInfo.swift */; };
 		5A28E87E2634036B00753AF5 /* CriteriaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A28E87D2634036B00753AF5 /* CriteriaModel.swift */; };
 		5A28E8832634055700753AF5 /* ModelStructure_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A28E8822634055600753AF5 /* ModelStructure_Tests.swift */; };
 		5A63111226354569004F0DDD /* TransformerListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A63111126354569004F0DDD /* TransformerListCell.swift */; };
@@ -16,6 +17,7 @@
 		5AA35FE126305D3B00660618 /* TransformersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA35FE026305D3B00660618 /* TransformersModel.swift */; };
 		5AD27740262DBC9F005E1A01 /* Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD2773F262DBC9F005E1A01 /* Links.swift */; };
 		5AD27749262DC24D005E1A01 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD27748262DC24D005E1A01 /* Colors.swift */; };
+		5AD50541263605BF00258997 /* CriteriaListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD50540263605BF00258997 /* CriteriaListCell.swift */; };
 		5AF640DF262D7EDD00508C54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF640DE262D7EDD00508C54 /* AppDelegate.swift */; };
 		5AF640E1262D7EDD00508C54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF640E0262D7EDD00508C54 /* SceneDelegate.swift */; };
 		5AF640E3262D7EDD00508C54 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF640E2262D7EDD00508C54 /* ViewController.swift */; };
@@ -49,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A27B9F82635939700E24065 /* TransformerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerInfo.swift; sourceTree = "<group>"; };
 		5A28E87D2634036B00753AF5 /* CriteriaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaModel.swift; sourceTree = "<group>"; };
 		5A28E8822634055600753AF5 /* ModelStructure_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelStructure_Tests.swift; sourceTree = "<group>"; };
 		5A63111126354569004F0DDD /* TransformerListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformerListCell.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		5AA35FE026305D3B00660618 /* TransformersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformersModel.swift; sourceTree = "<group>"; };
 		5AD2773F262DBC9F005E1A01 /* Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Links.swift; sourceTree = "<group>"; };
 		5AD27748262DC24D005E1A01 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		5AD50540263605BF00258997 /* CriteriaListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaListCell.swift; sourceTree = "<group>"; };
 		5AF640DB262D7EDD00508C54 /* Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Transformers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF640DE262D7EDD00508C54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AF640E0262D7EDD00508C54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			children = (
 				5A82C043263154DC00634B01 /* CriteriaCell.swift */,
 				5A63111126354569004F0DDD /* TransformerListCell.swift */,
+				5AD50540263605BF00258997 /* CriteriaListCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				5AF640E4262D7EDD00508C54 /* Main.storyboard */,
 				5AF640E2262D7EDD00508C54 /* ViewController.swift */,
 				5AF64129262D8B3400508C54 /* TransformerList.swift */,
+				5A27B9F82635939700E24065 /* TransformerInfo.swift */,
 				5AF6413A262D8EB400508C54 /* CreateTransformer.swift */,
 				5A631116263545C4004F0DDD /* Cells */,
 			);
@@ -358,10 +364,12 @@
 				5AF64115262D87AE00508C54 /* MainCoordinator.swift in Sources */,
 				5AD27740262DBC9F005E1A01 /* Links.swift in Sources */,
 				5AF6411D262D887500508C54 /* Coordinator.swift in Sources */,
+				5AD50541263605BF00258997 /* CriteriaListCell.swift in Sources */,
 				5AF640DF262D7EDD00508C54 /* AppDelegate.swift in Sources */,
 				5A82C044263154DC00634B01 /* CriteriaCell.swift in Sources */,
 				5A7053F5262E0ECB00EF1B42 /* AuthManager.swift in Sources */,
 				5A28E87E2634036B00753AF5 /* CriteriaModel.swift in Sources */,
+				5A27B9F92635939700E24065 /* TransformerInfo.swift in Sources */,
 				5AF640E1262D7EDD00508C54 /* SceneDelegate.swift in Sources */,
 				5AF64122262D88B300508C54 /* Storyboarded.swift in Sources */,
 			);
