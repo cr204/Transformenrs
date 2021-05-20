@@ -93,12 +93,11 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Transformers Exist" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4p-WI-Ate">
-                                <rect key="frame" x="114" y="218" width="147" height="63"/>
+                                <rect key="frame" x="103.5" y="218" width="168" height="63"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                 </accessibility>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="147" id="ABO-xf-d4j"/>
                                     <constraint firstAttribute="height" constant="63" id="bfL-IS-NRJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -216,6 +215,7 @@
                                                 <constraint firstItem="1rv-8B-EL7" firstAttribute="leading" secondItem="uKO-rb-3bK" secondAttribute="leading" id="LjJ-Si-Lzk"/>
                                                 <constraint firstItem="l7S-9n-x1O" firstAttribute="top" secondItem="uKO-rb-3bK" secondAttribute="top" constant="8" id="aeP-pt-8yK"/>
                                                 <constraint firstItem="1rv-8B-EL7" firstAttribute="top" secondItem="l7S-9n-x1O" secondAttribute="bottom" constant="10" id="fZv-4r-1a1"/>
+                                                <constraint firstItem="l7S-9n-x1O" firstAttribute="leading" secondItem="uKO-rb-3bK" secondAttribute="leading" id="zim-3k-5vD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -282,9 +282,8 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRp-Zt-nqI">
-                                <rect key="frame" x="79.5" y="35" width="55" height="21"/>
+                                <rect key="frame" x="85.5" y="35" width="43" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="55" id="FyX-nq-ceU"/>
                                     <constraint firstAttribute="height" constant="21" id="REC-hF-E1d"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>

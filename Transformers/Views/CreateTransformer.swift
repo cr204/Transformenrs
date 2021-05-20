@@ -7,14 +7,10 @@
 
 import UIKit
 
-enum Team: String {
-    case autobots = "A"
-    case decepticons = "D"
-}
-
 class CreateTransformer: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
+    fileprivate var presenter: CreateTransformerPresenter!
     
     var criteriaTypes:[RobotCriteria] = [RobotCriteria(criteria: .strength, level: 1),
                                           RobotCriteria(criteria: .interlligence, level: 1),
@@ -37,6 +33,8 @@ class CreateTransformer: UIViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        presenter = CreateTransformerPresenter()
+        
         self.title = "Create Transformer"
         tableView.dataSource = self
         tableView.delegate = self
@@ -98,31 +96,15 @@ class CreateTransformer: UIViewController, Storyboarded {
     
     private func saveNewRobot(name: String) {
         self.activityIndicator.startAnimating()
-        
-        let newRobot = Transformer(courage: criteriaTypes[5].level,
-                                   endurance: criteriaTypes[3].level,
-                                   firepower: criteriaTypes[6].level,
-                                   id: "",
-                                   intelligence: criteriaTypes[1].level,
-                                   name: name,
-                                   rank: criteriaTypes[4].level,
-                                   skill: criteriaTypes[7].level,
-                                   speed: criteriaTypes[2].level,
-                                   strength: criteriaTypes[0].level,
-                                   team: team.rawValue,
-                                   team_icon: "")
-        
-        APIManager.shared.addNew(transformer: newRobot, completion: { result in
-            
-            //print(result)
+    
+        presenter.addNew(transformerName: name, team: team, criteriaTypes: criteriaTypes) { result in
             switch result {
             case .success(_):
                 self.returnBack()
             case .failure(let error):
                 print(error.localizedDescription)
             }
-        })
-        
+        }
     }
     
     private func returnBack() {

@@ -10,6 +10,7 @@ import UIKit
 class TransformerList: UIViewController, Storyboarded {
     
     weak var coordinator: MainCoordinator?
+    fileprivate var presenter: TransformerListPresenter!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var labelInfo: UILabel!
@@ -26,15 +27,10 @@ class TransformerList: UIViewController, Storyboarded {
         return btn
     }()
 
-    private var robotList: [Transformer] = [] {
-        didSet {
-            print("List loaded:")
-            self.updateData()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        presenter = TransformerListPresenter()
         
         self.title = "Transformers"
         let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editTapped))
@@ -60,12 +56,11 @@ class TransformerList: UIViewController, Storyboarded {
     
     
     private func fetchListData() {
-        APIManager.shared.getTransformerList { result in
+        self.presenter.fetchListData { result in
             switch result {
-            case .success(let model):
-                self.robotList = model.sorted { $0.team < $1.team }
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .success(_):
+                self.updateData()
+            case .failure(_):
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                     self.showAlert(title: "Network Error", message: "Problem loading data,\n please try again")
@@ -110,7 +105,7 @@ class TransformerList: UIViewController, Storyboarded {
             self.tableView.isHidden = false
             self.tableView.reloadData()
             self.btnWar.isEnabled = true
-            print(self.robotList.count)
+            print(self.presenter.robotList.count)
         }
     }
     
@@ -128,22 +123,7 @@ class TransformerList: UIViewController, Storyboarded {
     }
     
     @objc private func onWarTapped(_ sender: Any) {
-        coordinator?.battleList(robotList)
-    }
-    
-    private func removeTransformer(id: String) {
-        print("Remove: \(id)")
-        
-        APIManager.shared.removeTransformer(id: id) { result in
-            switch result {
-            case .success(let res):
-                print("Res: \(res)")
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-        
-        
+        coordinator?.battleList(self.presenter.robotList)
     }
     
 }
@@ -154,10 +134,10 @@ extension TransformerList: UITableViewDelegate {
         if editingStyle == .delete {
             
             var itemToDelete:Transformer!
-            itemToDelete = robotList[indexPath.row]
-            robotList.remove(at: indexPath.row)
+            itemToDelete = presenter.robotList[indexPath.row]
+            presenter.robotList.remove(at: indexPath.row)
             
-            self.removeTransformer(id: itemToDelete.id)
+            self.presenter.removeTransformer(id: itemToDelete.id)
             
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -168,19 +148,19 @@ extension TransformerList: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //print(robotList[indexPath.row].name)
-        coordinator?.robotDetails(robot: robotList[indexPath.row])
+        coordinator?.robotDetails(robot: presenter.robotList[indexPath.row])
     }
     
 }
 
 extension TransformerList: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return robotList.count
+        return presenter.robotList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransformerListCell") as! TransformerListCell
-        cell.data = robotList[indexPath.row]
+        cell.data = presenter.robotList[indexPath.row]
         return cell
     }
     
