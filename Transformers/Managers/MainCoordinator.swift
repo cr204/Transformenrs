@@ -38,6 +38,10 @@ class MainCoordinator: Coordinator {
 //        ]
 //
 //        battleList(tempList)
+        
+//        let robot = Transformer(courage: 6, endurance: 6, firepower: 9, id: "67890", intelligence: 5, name: "Predaking", rank: 7, skill: 8, speed: 8, strength: 6, team: "D", team_icon: "img")
+//        editRobot(robot)
+        
     }
     
     func start() {
@@ -55,6 +59,13 @@ class MainCoordinator: Coordinator {
     func createNewRobot() {
         let vc = CreateTransformer.instantiate()
         vc.coordinator = self
+       navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func editRobot(_ robot: Transformer) {
+        let vc = EditTransformer.instantiate()
+        vc.coordinator = self
+        vc.transformer = robot
        navigationController.pushViewController(vc, animated: true)
     }
     
