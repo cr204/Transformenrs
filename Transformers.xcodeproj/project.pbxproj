@@ -178,7 +178,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		5AD2774E262DC2D8005E1A01 /* Views */ = {
+		5AD2774E262DC2D8005E1A01 /* ViewsControllers */ = {
 			isa = PBXGroup;
 			children = (
 				5AF640E9262D7EDE00508C54 /* LaunchScreen.storyboard */,
@@ -191,7 +191,7 @@
 				5A2E232E2636E2930044E6FE /* BattleViewController.swift */,
 				5A631116263545C4004F0DDD /* Cells */,
 			);
-			path = Views;
+			path = ViewsControllers;
 			sourceTree = "<group>";
 		};
 		5AF640D2262D7EDD00508C54 = {
@@ -217,10 +217,10 @@
 		5AF640DD262D7EDD00508C54 /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				5A85493A2656785A00C48967 /* Presenter */,
 				5A7053F9262E10A100EF1B42 /* Managers */,
-				5AD2774E262DC2D8005E1A01 /* Views */,
 				5AA35FE526305D4700660618 /* Model */,
+				5AD2774E262DC2D8005E1A01 /* ViewsControllers */,
+				5A85493A2656785A00C48967 /* Presenter */,
 				5AD27744262DC204005E1A01 /* Utils */,
 				5AD2774D262DC2A2005E1A01 /* Resources */,
 				5AF640EC262D7EDE00508C54 /* Info.plist */,

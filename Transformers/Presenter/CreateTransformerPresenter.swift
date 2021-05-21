@@ -14,7 +14,19 @@ enum Team: String {
 
 class CreateTransformerPresenter {
     
-    func addNew(transformerName: String, team: Team, criteriaTypes: [RobotCriteria], completion: @escaping ((Result<Transformer, Error>)) -> Void) {
+    var team: Team = .autobots
+    
+    var criteriaTypes:[RobotCriteria] = [RobotCriteria(criteria: .strength, level: 1),
+                                          RobotCriteria(criteria: .interlligence, level: 1),
+                                          RobotCriteria(criteria: .speed, level: 1),
+                                          RobotCriteria(criteria: .endurance, level: 1),
+                                          RobotCriteria(criteria: .rank, level: 1),
+                                          RobotCriteria(criteria: .courage, level: 1),
+                                          RobotCriteria(criteria: .firepower, level: 1),
+                                          RobotCriteria(criteria: .skill, level: 1)
+                                            ]
+    
+    func addNew(transformerName: String, completion: @escaping ((Result<Transformer, Error>)) -> Void) {
         
         let newRobot = Transformer(courage: criteriaTypes[5].level,
                                    endurance: criteriaTypes[3].level,
